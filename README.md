@@ -1,15 +1,14 @@
 # koa2-blog
-# dep
-babel-preset-env
-babel-register
-koa
-koa-mongoose
-koa-logger
-koa-bodyparser@3
-koa-router@next
-kcors
-koa-session2@node6
 
-#dev
-nodemon
+配置mongodb环境，开启mongodb服务
+
+client 目录
+
+cd client && npm install
+ng build -op ../server/dist
+
+server 目录
+
+cd server && npm install
+npm start
 
