@@ -1,0 +1,16 @@
+<a routerLink="/publish" *ngIf="authService.isLoggedIn" class="btn btn-lg btn-block btn-primary">发布文章</a>
+<div class="card  mt-3">
+    <img height="180" class="card-img-top" [src]="sys.blog_poster" alt="Card image cap">
+    <div class="card-block">
+        <h4 class="card-title">{{sys.blog_title}}</h4>
+        <p class="card-text">{{sys.blog_desc}}</p>
+
+    </div>
+
+</div>
+
+<div *ngIf="authService.isLoggedIn" class="card mt-3">
+    <ul class="list-group">
+        <li class="list-group-item" routerLink="/setting">系统设置</li>
+    </ul>
+</div>

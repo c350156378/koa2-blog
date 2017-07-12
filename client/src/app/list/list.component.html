@@ -1,66 +1,26 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-sm-8">
         <ul class="list-unstyled">
-            <li class="media">
+            <li class="media  mb-4" *ngFor="let article of articles; let last = last">
                 <img class="d-flex align-self-center mr-3" src="assets/logo.jpg" width="64" alt="Generic placeholder image">
                 <div class="media-body">
-                    <h5 class="mt-0 mb-1">博客第一条文章</h5>
-                    第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="d-flex align-self-center mr-3" src="assets/logo.jpg" width="64" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">第二天文章什么的</h5>
-                    第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简介第一条文章简.
-                </div>
-            </li>
+                    <h5 class="mt-0 mb-1" [routerLink]="['/detail', article._id]">{{article.article_title}}</h5>
+                    <div [innerHTML]="article.article_content | brief"></div>
+                    <div class="text-right">
+                        <!--<button class="btn btn-sm btn-default" (click)="editArticle(index)">编辑</button>-->
+                        <button class="btn btn-sm btn-danger" (click)="removeArticle(article)">删除</button>
+                    </div>
 
-            <li class="media">
-                <img class="d-flex align-self-center mr-3" src="assets/logo.jpg" width="64" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">第三篇文章</h5>
-                    文章简介
                 </div>
+
+
             </li>
         </ul>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <pagination *ngIf="totalItems > 5" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+            lastText="&raquo;"></pagination>
     </div>
-    <div class="col-4">
-        <div class="card">
-            <img height="180" class="card-img-top" src="assets/logo.jpg" alt="Card image cap">
-            <div class="card-block">
-                <h4 class="card-title">关于本博客</h4>
-                <p class="card-text">我的第一个博客</p>
-            </div>
-        </div>
-        <div class="card mt-3">
-            <div class="card-header">
-                分类
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">分类设置</li>
-                <li class="list-group-item">个人设置</li>
-                <li class="list-group-item">系统设置</li>
-            </ul>
-        </div>
+    <div class="col-sm-4">
+        <app-sidebar></app-sidebar>
     </div>
+
 </div>
