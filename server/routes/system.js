@@ -1,14 +1,14 @@
 const systemModel = require('../models/system');
 
 module.exports = (router) => {
-    router.get('/setting', async(ctx, next) => {
+    router.get('/api/setting', async(ctx, next) => {
             const result = await systemModel.find().exec();
             ctx.body = {
                 success: true,
                 data: result
             };
         })
-        .post('/setting', async(ctx, next) => {
+        .post('/api/setting', async(ctx, next) => {
             const sys = {
                 blog_poster: ctx.request.body.blog_poster,
                 blog_title: ctx.request.body.blog_title,

@@ -1,32 +1,27 @@
-<div class="row">
-    <div class="col-md-8">
-        <form (ngSubmit)="onSubmit()" #sysForm="ngForm" novalidate>
-            <div class="form-group">
-                <div class="text-center">
-                    <img [src]="sys.blog_poster" #poster class="rounded img-thumbnail  " style="width:285px;height:180px;" alt="...">
-                </div>
-                <label for="">博客海报</label>
-                <input type="file" name="blog_poster" (change)="processWebImage($event)" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="">博客标题</label>
-                <input type="text" name="blog_title" [(ngModel)]="sys.blog_title" class="form-control" required>
-                <!--<div class="alert alert-info">
-                    {{sys.blog_title}}
-                </div>-->
+<div class="ui-g">
 
-            </div>
-            <div class="form-group">
-                <label for="">博客介绍</label>
-                <textarea class="form-control" name="blog_desc" [(ngModel)]="sys.blog_desc" required></textarea>
-                <!--<div class="alert alert-info">
-                    {{sys.blog_desc}}
-                </div>-->
-            </div>
-            <input type="submit" class="btn btn-primary" [disabled]="!sysForm.valid" value="提交">
-        </form>
-    </div>
-    <div class="col-md-4">
-        <app-sidebar></app-sidebar>
-    </div>
+    <form (ngSubmit)="onSubmit()" #sysForm="ngForm" novalidate>
+
+      <div class="ui-g-2">
+        博客海报
+      </div>
+      <div class="ui-g-10">
+        <img [src]="sys.blog_poster" height="150" alt=""><br>
+        <input type="file" (change) = "processWebImage($event)">
+      </div>
+      <div class="ui-g-2">
+        博客标题
+      </div>
+      <div class="ui-g-10">
+        <input pInputText name="blog_title" [(ngModel)]="sys.blog_title" required>
+      </div>
+      <div class="ui-g-2">
+        博客介绍
+      </div>
+      <div class="ui-g-10">
+        <textarea pInputTextarea name="blog_desc" [(ngModel)]="sys.blog_desc" rows="3"  style="width:100%;" required></textarea>
+      </div>
+      <button pButton type="submit" [disabled]="!sysForm.valid" label="提交"></button>
+    </form>
+
 </div>

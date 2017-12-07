@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   getArticles(currentPage:number){
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers })
-    let url = `list/${currentPage}`;
+    let url = `/api/list/${currentPage}`;
     this.http.get(url, options).map(res => {
       const body = res.json();
       return body || {};
@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
   removeArticle(article){
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers })
-    let url = `detail/${article._id}`;
+    let url = `/api/detail/${article._id}`;
     this.articles =  this.articles.filter(h => h !== article);
     this.http.delete(url, options).map(res => {
       const body = res.json();

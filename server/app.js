@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const mongoose = require('koa-mongoose');
 const logger = require('koa-logger');
-const bodyParser = require('koa-bodyparser');
+const bodyParser = require('koa-body');
 const Router = require('koa-router');
 const kcors = require('kcors');
 const historyApiFallback = require('koa-history-api-fallback');
@@ -33,7 +33,7 @@ app.keys = ['koa2-blog'];
 
 app.use(kcors())
     .use(logger())
-    .use(bodyParser())
+    .use(bodyParser({multipart: true}))
     .use(historyApiFallback())
     .use(serve(__dirname + '/dist'));
 

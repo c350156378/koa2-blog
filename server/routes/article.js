@@ -12,7 +12,7 @@ module.exports = (router) => {
             data: result
         }
     });
-    router.get('/detail/:id', async(ctx, next) => {
+    router.get('/api/detail/:id', async(ctx, next) => {
             const id = ctx.params.id;
             const result = await articleModel.findById({ _id: id }).exec();
             console.log(result);
@@ -21,14 +21,14 @@ module.exports = (router) => {
                 data: result
             }
         })
-        .del('/detail/:id', async(ctx, next) => {
+        .del('/api/detail/:id', async(ctx, next) => {
             const id = ctx.params.id;
             const result = await articleModel.deleteOne({ _id: id }).exec();
             ctx.body = {
                 success: true
             }
         });
-    router.get('/list/:id', async(ctx, next) => {
+    router.get('/api/list/:id', async(ctx, next) => {
             const currentPage = (ctx.params.id && ctx.params.id > 0) ? (ctx.params.id - 1) * 5 : 0;
             const result = await articleModel.find({}).sort({ _id: -1 }).skip(currentPage).limit(5).exec();
             const count = await articleModel.count({}).exec();
@@ -38,7 +38,7 @@ module.exports = (router) => {
                 count: count
             };
         })
-        .post('/publish', async(ctx, next) => {
+        .post('/api/publish', async(ctx, next) => {
             const article = {
                 article_title: ctx.request.body.article_title,
                 article_cat: ctx.request.body.article_cat,
@@ -56,6 +56,12 @@ module.exports = (router) => {
                 success: true
             }
 
+        })
+        .post('/api/upload', async(ctx, next) => {
+            console.log(ctx.request.body.files.file);
+            ctx.body = {
+                success: true
+            }
         });
 
 

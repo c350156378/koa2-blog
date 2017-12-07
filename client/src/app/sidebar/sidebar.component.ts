@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import {Input, ApplicationRef ,NgZone ,Component, OnInit, AfterViewInit,ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SettingService } from '../setting/setting.service';
@@ -14,29 +14,21 @@ export class SidebarComponent implements OnInit {
   sys: any = {};
   currentUser = null;
 
-  constructor(private authService: AuthService, private cdr: ChangeDetectorRef, private settingService: SettingService, private router: Router) {
+
+  constructor(public nz:NgZone, public ar:ApplicationRef, public authService: AuthService, public cdr: ChangeDetectorRef, public settingService: SettingService, public router: Router) {
   }
   ngOnInit() {
     this.settingService.getSysInfo().subscribe(sys => {
-      console.log(sys[0]);
       this.sys = sys[0];
     });
     
-    this.currentUser = JSON.parse(localStorage.getItem('userInfo'));
+    // this.currentUser = JSON.parse(localStorage.getItem('userInfo'));
 
   }
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-    this.cdr.markForCheck();
+  ngDoCheck() {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //Add 'implements DoCheck' to the class.
   }
-
-  ngAfterViewChecked() {
-    this.cdr.detectChanges()
-    this.cdr.markForCheck();
-
-  }
-
-
 
 }

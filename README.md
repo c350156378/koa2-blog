@@ -11,4 +11,5 @@ ng build -op ../server/dist
 # server 目录
 
 cd server && npm install
+
 npm start

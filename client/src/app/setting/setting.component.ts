@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
@@ -17,9 +17,10 @@ export class SettingComponent implements OnInit {
   @ViewChild('poster') poster: ElementRef;
   sys: any = {};
   sysForm: FormGroup;
+  myFile:any = [];
 
 
-  constructor(private router: Router, private fb: FormBuilder, private http: Http, private elementRef: ElementRef, private renderer: Renderer2, private settingService: SettingService) { 
+  constructor(private cdr: ChangeDetectorRef ,private router: Router, private fb: FormBuilder, private http: Http, private elementRef: ElementRef, private renderer: Renderer2, private settingService: SettingService) { 
     // this.createForm();
   }
 
@@ -49,14 +50,13 @@ export class SettingComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.sys);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const jwt = '123';
     if (jwt) {
       headers.append("Authorization", "Bear " + jwt);
     }
     const options = new RequestOptions({ headers: headers })
-    this.http.post('setting', JSON.stringify(this.sys), options).map(res => {
+    this.http.post('/api/setting', JSON.stringify(this.sys), options).map(res => {
       const body = res.json();
       return body.data || {};
     }).subscribe(

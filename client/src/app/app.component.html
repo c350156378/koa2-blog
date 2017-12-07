@@ -1,17 +1,20 @@
-<top-menu></top-menu>
-<div id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-xs-12 col-md-offset-1 push-md-1">
-                <nav class="breadcrumb mt-3">
-                    <a class="breadcrumb-item" [routerLink]="['']">首页</a>
-                    <!--<a class="breadcrumb-item" href="#">分类一</a>
-                    <span class="breadcrumb-item active">文章一</span>-->
-                </nav>
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
-    <app-footer></app-footer>
+<!-- <top-menu></top-menu> -->
+<div class="ui-g" style="justify-content:center;">
+  <div class="ui-g-12">
+    <p-menubar [model]="menus">
+      <app-search></app-search>
+      <button pButton *ngIf="authService.isLoggedIn" label="设置" (click)="settings()" icon="fa-gear"></button>
+      <button pButton *ngIf="authService.isLoggedIn" label="退出" (click)="logout()" icon="fa-sign-out"></button>
+      <button *ngIf="!authService.isLoggedIn" pButton label="登陆" (click)="login()" icon="fa-sign-in"></button>
+      <button *ngIf="!authService.isLoggedIn" pButton label="注册" icon="fa-user-circle"></button>
+    </p-menubar>
+  </div> 
+  <div class="ui-g-12 ui-md-8 ui-lg-6" style="justify-content: center">
+    <router-outlet></router-outlet>
+  </div>
 
+
+  <footer class="ui-g-12" style="text-align: center">
+    懒人壮壮 &copy; 2017 版权所有
+  </footer>
 </div>

@@ -22,14 +22,13 @@ export class DetailComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.getDetail(params['id']))
       .subscribe(article => {
-        
         this.article = article.data;
         console.log(this.article);
       });
   }
 
   getDetail(id): Promise<any>{
-    return this.http.get(`detail/${id}`).toPromise().then(res => res.json());
+    return this.http.get(`/api/detail/${id}`).toPromise().then(res => res.json());
   }
 
    ngAfterViewInit(){

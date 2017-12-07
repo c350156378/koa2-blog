@@ -7,11 +7,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class SearchService {
 
+  URL:string = 'http:localhost:3000/';
+
   constructor(private http: Http) { }
 
   search(term): Observable<any>{
     return this.http
-      .get(`api/articles/?name=${term}`)
+      .get(`${this.URL}api/articles/?name=${term}`)
       .map(res => res.json().data);
   }
 

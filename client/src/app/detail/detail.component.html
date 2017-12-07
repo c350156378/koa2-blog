@@ -1,14 +1,13 @@
-<div class="row">
-    <div class="col-sm-8">
-        <h2>
-            {{article.article_title}}
-        </h2>
-        <p>{{article.createdTime}} -- {{article.article_cat}}</p>
-        <hr class="my-3">
-        <div [innerHTML]="article.article_content"></div>
-    </div>
-    <div class="col-sm-4">
-        <app-sidebar></app-sidebar>
-    </div>
 
+  <div class="ui-g-8">
+    <h2>
+      {{article.article_title}}
+    </h2>
+    <p>{{article.createdTime}} -- {{article.article_cat}}</p>
+    <hr>
+    <div [innerHTML]="article.article_content"></div>
+  </div>
+<div class="ui-g-4">
+    <app-sidebar></app-sidebar>
 </div>
+

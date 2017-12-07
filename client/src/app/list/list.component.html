@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-8">
         <ul class="list-unstyled">
             <li class="media  mb-4" *ngFor="let article of articles; let last = last">
@@ -7,7 +7,7 @@
                     <h5 class="mt-0 mb-1" [routerLink]="['/detail', article._id]">{{article.article_title}}</h5>
                     <div [innerHTML]="article.article_content | brief"></div>
                     <div class="text-right">
-                        <!--<button class="btn btn-sm btn-default" (click)="editArticle(index)">编辑</button>-->
+                        <button class="btn btn-sm btn-default" (click)="editArticle(index)">编辑</button>
                         <button class="btn btn-sm btn-danger" (click)="removeArticle(article)">删除</button>
                     </div>
 
@@ -23,4 +23,35 @@
         <app-sidebar></app-sidebar>
     </div>
 
-</div>
+</div> -->
+
+  <div class="ui-g-8">
+    <p-dataList [value]="articles" [paginator]="true" [rows]="3">
+      <p-header></p-header>
+
+      <ng-template let-article pTemplate="item">
+        <div class="ui-g" [routerLink]="['/detail', article._id]">
+          <div class="ui-g-2" style="text-align: center;">
+            <img src="assets/logo.jpg" width="64" alt="Generic placeholder image">
+          </div>
+          <div class="ui-g-10">
+
+            <h5>{{article.article_title}}</h5>
+            <div [innerHTML]="article.article_content | brief"></div>
+            <div style="text-align: right;">
+              <button pButton label="编辑" (click)="editArticle(index)"></button>
+              <button pButton class="ui-button-danger" label="删除" (click)="removeArticle(article)"></button>
+            </div>
+          </div>
+        </div>
+
+
+      </ng-template>
+
+      <p-footer></p-footer>
+    </p-dataList>
+  </div>
+  <div class="ui-g-4">
+    <app-sidebar></app-sidebar>
+  </div>
+
